@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123f31">
+<title>হেদায়া হাব | HidayaHub</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#f7f4ea;
+  --card:#ffffff;
+  --text:#17382d;
+  --green:#123f31;
+  --green2:#21634b;
+  --gold:#d9b65c;
+  --border:#e5e0d3;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+
+body.dark{
+  --bg:#0c1713;
+  --card:#16231f;
+  --text:#f1f5f2;
+  --border:#30423b;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:var(--card);
+  box-shadow:0 2px 15px #0002;
+  padding:14px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  color:var(--text);
+  text-decoration:none;
+  font-size:25px;
+  font-weight:bold;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+nav a{
+  color:var(--text);
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.theme{
+  border:0;
+  background:none;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.hero{
+  padding:75px 7%;
+  color:white;
+  background:linear-gradient(125deg,#0d3d2e,#21634b);
+}
+
+.hero small{
+  color:#e6c568;
+  font-size:16px;
+}
+
+.hero h1{
+  font-family:Georgia,serif;
+  font-size:clamp(42px,7vw,70px);
+  line-height:1.1;
+  margin:15px 0;
+}
+
+.hero h1 span{
+  color:#e4c15e;
+}
+
+.hero p{
+  max-width:700px;
+  font-size:18px;
+  margin-bottom:25px;
+}
+
+.btn{
+  border:0;
+  background:var(--gold);
+  color:#17382d;
+  padding:11px 18px;
+  border-radius:9px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.quick{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.quick a{
+  text-align:center;
+  padding:22px;
+  background:var(--card);
+  color:var(--text);
+  text-decoration:none;
+  font-size:30px;
+  border:1px solid var(--border);
+}
+
+.quick b{
+  display:block;
+  font-size:16px;
+}
+
+main{
+  max-width:1150px;
+  margin:auto;
+}
+
+section{
+  padding:55px 6%;
+}
+
+.label{
+  color:#b28e36;
+  letter-spacing:2px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+h2{
+  font-family:Georgia,serif;
+  font-size:34px;
+  margin:5px 0 22px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:22px;
+  box-shadow:0 8px 25px #0001;
+}
+
+.arabic{
+  direction:rtl;
+  text-align:center;
+  font-size:34px;
+  margin:12px 0;
+}
+
+.center{
+  text-align:center;
+}
+
+.search{
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+.search input{
+  flex:1;
+}
+
+input,
+textarea{
+  width:100%;
+  padding:12px;
+  margin:7px 0 12px;
+  border:1px solid #aaa;
+  border-radius:8px;
+  font-size:16px;
+  background:var(--card);
+  color:var(--text);
+}
+
+.tools{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:15px;
+}
+
+.video{
+  background:#173f33;
+  color:white;
+  border-radius:15px;
+  padding:60px;
+  text-align:center;
+  font-size:25px;
+}
+
+footer{
+  background:#10372b;
+  color:white;
+  text-align:center;
+  padding:35px;
+}
+
+/* ADMIN */
+
+.admin-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:#0009;
+  padding:20px;
+  overflow:auto;
+}
+
+.admin-box{
+  max-width:600px;
+  margin:40px auto;
+  background:var(--card);
+  color:var(--text);
+  padding:25px;
+  border-radius:15px;
+}
+
+.close{
+  float:right;
+  border:0;
+  background:none;
+  color:var(--text);
+  font-size:28px;
+  cursor:pointer;
+}
+
+.hide{
+  display:none;
+}
+
+.admin-article{
+  padding:15px;
+  background:var(--bg);
+  border-radius:10px;
+  margin:10px 0;
+}
+
+@media(max-width:720px){
+
+  header{
+    padding:13px 5%;
+  }
+
+  nav a{
+    display:none;
+  }
+
+  .hero{
+    padding:55px 6%;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .quick{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  section{
+    padding:45px 5%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<a href="#" class="logo">
+☾ হেদায়া হাব
+</a>
+
+<nav>
+
+<a href="#quran">কুরআন</a>
+<a href="#hadith">হাদিস</a>
+<a href="#dua">দোয়া</a>
+<a href="#articles">আর্টিকেল</a>
+<a href="#videos">ভিডিও</a>
+
+<a href="#" onclick="openAdmin();return false;">
+Admin
+</a>
+
+<button class="theme" onclick="toggleTheme()">
+🌙
+</button>
+
+</nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<small>
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+</small>
+
+<h1>
+Guiding Hearts,<br>
+<span>Inspiring Lives.</span>
+</h1>
+
+<p>
+ইসলামিক জ্ঞান, হিদায়াত ও উপকারী কনটেন্ট—
+সবকিছু এক জায়গায়।
+</p>
+
+<a href="#articles" class="btn">
+জ্ঞান অন্বেষণ করুন
+</a>
+
+</section>
+
+
+<!-- QUICK MENU -->
+
+<div class="quick">
+
+<a href="#quran">
+🕋
+<b>কুরআন</b>
+</a>
+
+<a href="#hadith">
+📖
+<b>হাদিস</b>
+</a>
+
+<a href="#dua">
+🤲
+<b>দোয়া</b>
+</a>
+
+<a href="#videos">
+🎥
+<b>ভিডিও</b>
+</a>
+
+</div>
+
+
+<main>
+
+
+<!-- SEARCH -->
+
+<section>
+
+<div class="label">
+SEARCH
+</div>
+
+<h2>
+হেদায়া হাবে খুঁজুন
+</h2>
+
+<div class="search">
+
+<input
+id="searchBox"
+placeholder="কুরআন, হাদিস, দোয়া বা আর্টিকেল লিখুন..."
+oninput="searchSite()"
+>
+
+<button
+class="btn"
+onclick="searchSite()">
+
+Search
+
+</button>
+
+</div>
+
+<div
+id="searchResults"
+class="grid">
+</div>
+
+</section>
+
+
+<!-- QURAN -->
+
+<section id="quran">
+
+<div class="label">
+QURAN
+</div>
+
+<h2>
+কুরআনের আলো
+</h2>
+
+<div class="card">
+
+<div class="arabic">
+إِنَّ مَعَ الْعُسْرِ يُسْرًا
+</div>
+
+<p class="center">
+“নিশ্চয়ই কষ্টের সাথে স্বস্তি রয়েছে।”
+</p>
+
+<br>
+
+<small>
+সূরা আশ-শরহ ৯৪:৬
+</small>
+
+<div class="tools">
+
+<button
+class="btn"
+onclick="copyText('إِنَّ مَعَ الْعُسْرِ يُسْرًا')">
+📋 Copy
+</button>
+
+<button
+class="btn"
+onclick="shareText('নিশ্চয়ই কষ্টের সাথে স্বস্তি রয়েছে।')">
+📤 Share
+</button>
+
+<button
+class="btn"
+onclick="saveItem('কুরআন — নিশ্চয়ই কষ্টের সাথে স্বস্তি রয়েছে')">
+🔖 Save
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HADITH -->
+
+<section id="hadith">
+
+<div class="label">
+HADITH
+</div>
+
+<h2>
+আজকের হাদিস
+</h2>
+
+<div class="card">
+
+<h3>
+নিয়তের গুরুত্ব
+</h3>
+
+<p>
+প্রতিটি কাজ আল্লাহর সন্তুষ্টির উদ্দেশ্যে
+করার চেষ্টা করা উচিত।
+</p>
+
+<small>
+সহিহ বুখারি ও সহিহ মুসলিম
+</small>
+
+<div class="tools">
+
+<button
+class="btn"
+onclick="shareText('নিয়তের গুরুত্ব — হেদায়া হাব')">
+📤 Share
+</button>
+
+<button
+class="btn"
+onclick="saveItem('হাদিস — নিয়তের গুরুত্ব')">
+🔖 Save
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DUA -->
+
+<section id="dua">
+
+<div class="label">
+DUA
+</div>
+
+<h2>
+আজকের দোয়া
+</h2>
+
+<div class="card center">
+
+<div class="arabic">
+رَبِّ زِدْنِي عِلْمًا
+</div>
+
+<p>
+“হে আমার রব, আমার জ্ঞান বৃদ্ধি করুন।”
+</p>
+
+<div class="tools">
+
+<button
+class="btn"
+onclick="copyText('رَبِّ زِدْنِي عِلْمًا')">
+📋 Copy
+</button>
+
+<button
+class="btn"
+onclick="saveItem('দোয়া — رَبِّ زِدْنِي عِلْمًا')">
+🔖 Save
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ARTICLES -->
+
+<section id="articles">
+
+<div class="label">
+ARTICLES
+</div>
+
+<h2>
+ইসলামিক আর্টিকেল
+</h2>
+
+<div id="articleList" class="grid">
+
+<div class="card">
+
+<h3>
+ইসলামিক জ্ঞান অর্জনের গুরুত্ব
+</h3>
+
+<p>
+জ্ঞান সত্য বুঝতে এবং সুন্দর জীবন
+পরিচালনায় সাহায্য করে।
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+দৈনন্দিন জীবনে দোয়া
+</h3>
+
+<p>
+দোয়া ও আমলের মাধ্যমে আল্লাহর সাথে
+সম্পর্ক দৃঢ় করা যায়।
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+সুন্দর চরিত্র
+</h3>
+
+<p>
+ইসলামে উত্তম চরিত্রের গুরুত্ব
+অত্যন্ত বেশি।
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- VIDEO -->
+
+<section id="videos">
+
+<div class="label">
+VIDEOS
+</div>
+
+<h2>
+ইসলামিক ভিডিও
+</h2>
+
+<div class="video">
+
+🎥
+
+<br>
+
+Featured Islamic Video
+
+</div>
+
+</section>
+
+
+<!-- SAVED -->
+
+<section>
+
+<div class="label">
+BOOKMARKS
+</div>
+
+<h2>
+আমার সংরক্ষিত বিষয়
+</h2>
+
+<div
+id="savedItems"
+class="card">
+</div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<h3>
+☾ হেদায়া হাব
+</h3>
+
+<p>
+জ্ঞান থেকে হিদায়াতের পথে।
+</p>
+
+<p>
+© 2026 HidayaHub
+</p>
+
+</footer>
+
+
+<!-- ADMIN -->
+
+<div
+id="adminModal"
+class="admin-modal">
+
+<div class="admin-box">
+
+<button
+class="close"
+onclick="closeAdmin()">
+×
+</button>
+
+
+<!-- LOGIN -->
+
+<div id="loginArea">
+
+<h2>
+Admin Login
+</h2>
+
+<input
+id="adminEmail"
+type="email"
+placeholder="Admin Email"
+>
+
+<input
+id="adminPassword"
+type="password"
+placeholder="Password"
+>
+
+<button
+class="btn"
+onclick="login()">
+Login
+</button>
+
+<p id="loginMessage"></p>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div
+id="dashboard"
+class="hide">
+
+<h2>
+HidayaHub Admin Dashboard
+</h2>
+
+<button
+class="btn"
+onclick="logout()">
+Logout
+</button>
+
+<hr>
+
+<br>
+
+<h3>
+নতুন Article যোগ করুন
+</h3>
+
+<input
+id="articleTitle"
+placeholder="Article Title"
+>
+
+<textarea
+id="articleContent"
+rows="5"
+placeholder="Article Content">
+</textarea>
+
+<button
+class="btn"
+onclick="addArticle()">
+Publish
+</button>
+
+<br>
+<br>
+
+<h3>
+Published Articles
+</h3>
+
+<div id="adminArticles">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* DARK MODE */
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+"theme",
+document.body.classList.contains("dark")
+? "dark"
+: "light"
+);
+
+}
+
+if(localStorage.getItem("theme")==="dark"){
+
+document.body.classList.add("dark");
+
+}
+
+
+/* COPY */
+
+function copyText(text){
+
+if(navigator.clipboard){
+
+navigator.clipboard
+.writeText(text)
+.then(function(){
+
+alert("কপি হয়েছে ✅");
+
+});
+
+}else{
+
+alert(text);
+
+}
+
+}
+
+
+/* SHARE */
+
+function shareText(text){
+
+if(navigator.share){
+
+navigator.share({
+
+title:"হেদায়া হাব",
+
+text:text
+
+});
+
+}else{
+
+copyText(text);
+
+}
+
+}
+
+
+/* BOOKMARK */
+
+function saveItem(text){
+
+let saved=
+JSON.parse(
+localStorage.getItem("savedItems") || "[]"
+);
+
+if(!saved.includes(text)){
+
+saved.push(text);
+
+localStorage.setItem(
+"savedItems",
+JSON.stringify(saved)
+);
+
+alert("সংরক্ষণ হয়েছে ✅");
+
+}else{
+
+alert("এটি আগে থেকেই সংরক্ষিত আছে।");
+
+}
+
+showSaved();
+
+}
+
+
+/* SHOW SAVED */
+
+function showSaved(){
+
+let saved=
+JSON.parse(
+localStorage.getItem("savedItems") || "[]"
+);
+
+let box=
+document.getElementById("savedItems");
+
+if(saved.length===0){
+
+box.innerHTML=
+"<p>এখনও কোনো বিষয় সংরক্ষণ করা হয়নি।</p>";
+
+return;
+
+}
+
+box.innerHTML=
+saved.map(function(item){
+
+return "<p>🔖 "+
+escapeHTML(item)+
+"</p>";
+
+}).join("");
+
+}
+
+
+/* SEARCH */
+
+function searchSite(){
+
+let query=
+document
+.getElementById("searchBox")
+.value
+.toLowerCase()
+.trim();
+
+let results=
+document.getElementById("searchResults");
+
+if(!query){
+
+results.innerHTML="";
+
+return;
+
+}
+
+let data=[
+
+["কুরআন","কুরআনের আলো"],
+
+["হাদিস","নিয়তের গুরুত্ব"],
+
+["দোয়া","রব্বি জিদনী ইলমা"],
+
+["আর্টিকেল","ইসলামিক জ্ঞান অর্জনের গুরুত্ব"],
+
+["আর্টিকেল","সুন্দর চরিত্র"]
+
+];
+
+let found=
+data.filter(function(item){
+
+return (
+item[0]+" "+item[1]
+)
+.toLowerCase()
+.includes(query);
+
+});
+
+
+if(found.length===0){
+
+results.innerHTML=
+"<p>কিছু পাওয়া যায়নি।</p>";
+
+return;
+
+}
+
+
+results.innerHTML=
+found.map(function(item){
+
+return `
+
+<div class="card">
+
+<small>
+${item[0]}
+</small>
+
+<h3>
+${item[1]}
+</h3>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/* ADMIN OPEN */
+
+function openAdmin(){
+
+document.getElementById(
+"adminModal"
+).style.display="block";
+
+if(
+localStorage.getItem("adminLogin")==="true"
+){
+
+showDashboard();
+
+}
+
+}
+
+
+/* ADMIN CLOSE */
+
+function closeAdmin(){
+
+document.getElementById(
+"adminModal"
+).style.display="none";
+
+}
+
+
+/* LOGIN */
+
+function login(){
+
+let email=
+document.getElementById(
+"adminEmail"
+).value;
+
+let password=
+document.getElementById(
+"adminPassword"
+).value;
+
+
+/*
+ DEMO LOGIN
+ পরে Server Login করতে হবে।
+*/
+
+if(
+email==="admin@hidayahub.com"
+&&
+password==="123456"
+){
+
+localStorage.setItem(
+"adminLogin",
+"true"
+);
+
+showDashboard();
+
+}else{
+
+document.getElementById(
+"loginMessage"
+).innerText=
+"Email অথবা Password ভুল ❌";
+
+}
+
+}
+
+
+/* DASHBOARD */
+
+function showDashboard(){
+
+document.getElementById(
+"loginArea"
+).classList.add("hide");
+
+document.getElementById(
+"dashboard"
+).classList.remove("hide");
+
+showAdminArticles();
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+localStorage.removeItem(
+"adminLogin"
+);
+
+location.reload();
+
+}
+
+
+/* ADD ARTICLE */
+
+function addArticle(){
+
+let title=
+document.getElementById(
+"articleTitle"
+).value;
+
+let content=
+document.getElementById(
+"articleContent"
+).value;
+
+
+if(!title || !content){
+
+alert(
+"Title এবং Content লিখুন।"
+);
+
+return;
+
+}
+
+
+let articles=
+JSON.parse(
+localStorage.getItem("articles")
+|| "[]"
+);
+
+
+articles.push({
+
+title:title,
+
+content:content
+
+});
+
+
+localStorage.setItem(
+"articles",
+JSON.stringify(articles)
+);
+
+
+document.getElementById(
+"articleTitle"
+).value="";
+
+document.getElementById(
+"articleContent"
+).value="";
+
+
+showAdminArticles();
+
+renderArticles();
+
+}
+
+
+/* ADMIN ARTICLES */
+
+function showAdminArticles(){
+
+let articles=
+JSON.parse(
+localStorage.getItem("articles")
+|| "[]"
+);
+
+let box=
+document.getElementById(
+"adminArticles"
+);
+
+
+if(articles.length===0){
+
+box.innerHTML=
+"<p>এখনও কোনো Article নেই।</p>";
+
+return;
+
+}
+
+
+box.innerHTML=
+articles.map(function(article,index){
+
+return `
+
+<div class="admin-article">
+
+<h3>
+${escapeHTML(article.title)}
+</h3>
+
+<p>
+${escapeHTML(article.content)}
+</p>
+
+<button
+class="btn"
+onclick="deleteArticle(${index})">
+
+Delete
+
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/* DELETE ARTICLE */
+
+function deleteArticle(index){
+
+let articles=
+JSON.parse(
+localStorage.getItem("articles")
+|| "[]"
+);
+
+articles.splice(index,1);
+
+localStorage.setItem(
+"articles",
+JSON.stringify(articles)
+);
+
+showAdminArticles();
+
+location.reload();
+
+}
+
+
+/* SHOW NEW ARTICLES */
+
+function renderArticles(){
+
+let articles=
+JSON.parse(
+localStorage.getItem("articles")
+|| "[]"
+);
+
+let list=
+document.getElementById(
+"articleList"
+);
+
+
+if(!articles.length){
+
+return;
+
+}
+
+
+articles.forEach(function(article){
+
+let div=
+document.createElement("div");
+
+div.className="card";
+
+div.innerHTML=
+"<h3>"+
+escapeHTML(article.title)+
+"</h3>"+
+"<p>"+
+escapeHTML(article.content)+
+"</p>";
+
+list.appendChild(div);
+
+});
+
+}
+
+
+/* SECURITY */
+
+function escapeHTML(text){
+
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* START */
+
+showSaved();
+
+renderArticles();
+
+</script>
+
+</body>
+</html>
